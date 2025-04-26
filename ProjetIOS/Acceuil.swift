@@ -9,12 +9,7 @@ import SwiftUI
 
 struct Acceuil: View {
     var body: some View {
-        
         VStack{
-            
-           
-
-            
             VStack{
                 Image("logo")
                     .resizable()
