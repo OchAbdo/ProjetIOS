@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct SplashScreenView: View {
+    @State var isShowing = false
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            if isShowing {
+                ContentView()
+            } else {
+                LottieView(name: "animation", loopMode: .loop)
+                    .background(Color(red: 58/255, green: 54/255, blue: 48/255))
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                withAnimation {
+                    isShowing = true
+                }
+            }
+        }
     }
 }
 
