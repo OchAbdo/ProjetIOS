@@ -1,12 +1,21 @@
+//
+//  Signup.swift
+//  ProjetIOS
+//
+//  Created by Tekup-mac-4 on 26/4/2025.
+//
+
 import SwiftUI
 
-struct LogInView: View {
-    
-    @State var email: String = ""
-    @State var password: String = ""
+struct Signup: View {
+    @State var fullname = ""
+    @State var email = ""
+    @State var birthday = ""
+    @State var password = ""
+    @State var conpassword = ""
     @State private var isChecked = false
-    
     var body: some View {
+        
         VStack {
             HStack {
                 Image("backarrow")
@@ -23,41 +32,86 @@ struct LogInView: View {
             .padding(.top, 50)
             
             VStack(spacing: 20) {
-                Text("Log In")
+                Text("Sign Up")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(red: 58/255, green: 54/255, blue: 48/255))
+                    .padding()
                 
-                Text("Welcome back, glad to see you again!")
+                Text("Create An Account")
                     .font(.subheadline)
                     .foregroundColor(.gray)
-                    .padding(.bottom, 20)
+                    .padding(.top, -20)
+                    .padding(.bottom , 30)
+                ScrollView{
                 
                 VStack(alignment: .leading) {
-                    Text("Email")
+                    Text("Full Name")
                         .foregroundColor(.white)
                         .font(.subheadline)
-                    TextField("Enter your email", text: $email)
+                    TextField("Full Name", text: $fullname)
                         .padding()
                         .background(Color(red: 58/255, green: 54/255, blue: 48/255))
                         .foregroundColor(.white)
-                        .cornerRadius(10)
+                        .cornerRadius(20)
                         .frame(width: 310, height: 50)
                     
-                }
+                }.padding(.bottom , 30)
                 
                 VStack(alignment: .leading) {
-                    Text("Password")
+                    Text("E-mail")
                         .foregroundColor(.white)
                         .font(.subheadline)
-                    SecureField("Enter your password", text: $password)
+                    TextField("E-mail", text: $email)
                         .padding()
                         .background(Color(red: 58/255, green: 54/255, blue: 48/255))
                         .foregroundColor(.white)
-                        .cornerRadius(10)
+                        .cornerRadius(20)
                         .frame(width: 310, height: 50)
-                }
-    
+                }.padding(.bottom , 30)
+                    
+                    VStack(alignment: .leading) {
+                        Text("Date Of Birthday")
+                            .foregroundColor(.white)
+                            .font(.subheadline)
+                        TextField("Date Of Birthday", text: $birthday)
+                            .padding()
+                            .background(Color(red: 58/255, green: 54/255, blue: 48/255))
+                            .foregroundColor(.white)
+                            .cornerRadius(20)
+                            .frame(width: 310, height: 50)
+                    }.padding(.bottom , 30)
+                    
+                    VStack(alignment: .leading) {
+                        Text("Password")
+                            .foregroundColor(.white)
+                            .font(.subheadline)
+                        SecureField("Password", text: $password)
+                            .padding()
+                            .background(Color(red: 58/255, green: 54/255, blue: 48/255))
+                            .foregroundColor(.white)
+                            .cornerRadius(20)
+                            .frame(width: 310, height: 50)
+                    }.padding(.bottom , 30)
+                    
+                    
+                    VStack(alignment: .leading) {
+                        Text("Confirm Password")
+                            .foregroundColor(.white)
+                            .font(.subheadline)
+                        SecureField("Confirm Password", text: $conpassword)
+                            .padding()
+                            .background(Color(red: 58/255, green: 54/255, blue: 48/255))
+                            .foregroundColor(.white)
+                            .cornerRadius(20)
+                            .frame(width: 310, height: 50)
+                    }.padding(.bottom , 30)
+                    
+                    
+                }.frame(width: 350, height: 220)
+                
+                
+                
                 HStack {
                     Image(systemName: isChecked ? "checkmark.square" : "square")
                         .foregroundColor(isChecked ? .blue : .gray)
@@ -71,11 +125,6 @@ struct LogInView: View {
                         .font(.subheadline)
                     
                     Spacer()
-                    
-                    Text("Forgot password?")
-                        .foregroundColor(.white)
-                        .font(.subheadline)
-                        .padding(.trailing)
                 }
                 .padding()
                 
@@ -86,11 +135,11 @@ struct LogInView: View {
                         .frame(width: 310, height: 50)
                         .foregroundColor(.white)
                         .background(Color(red: 58/255, green: 54/255, blue: 48/255))
-                        .cornerRadius(10)
+                        .cornerRadius(20)
                 }
                 .padding(.top, 20)
        
-                Text("------ Or log in with ------")
+                Text("------ Or Sign Up with ------")
                     .foregroundColor(.white)
                     .padding(.top, 10)
                 
@@ -106,7 +155,7 @@ struct LogInView: View {
                         Image("instagram")
                     }
                 }
-                .padding(.top, 10)
+                .padding(.bottom, 10)
             }
             .frame(width: 360, height: 650)
             .background(Color(red: 112/255, green: 211/255, blue: 166/255))
@@ -115,15 +164,14 @@ struct LogInView: View {
             .padding(.bottom, 150)
             .padding(.horizontal)
             
-          
+            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(red: 58/255, green: 54/255, blue: 48/255))
         
-
     }
 }
 
 #Preview {
-    LogInView()
+    Signup()
 }
