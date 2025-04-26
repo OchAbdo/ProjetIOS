@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
+            
             VStack {
                 Image("logo")
                     .resizable()
@@ -36,7 +37,7 @@ struct ContentView: View {
                     .foregroundColor(.white)
                     .font(.system(size: 20, weight: .bold, design:.default))
                     .padding()
-                    
+                
             }.frame(
                 maxWidth : .infinity,
                 maxHeight : 80
@@ -55,23 +56,25 @@ struct ContentView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(red: 58/255, green: 54/255, blue: 48/255))
     }
-}
-
-
-struct RoundedCorner:Shape{
-    var radius: CGFloat = .infinity
-    var corners: UIRectCorner = .allCorners
-    func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(
-            roundedRect: rect,
-            byRoundingCorners: corners,
-            cornerRadii: CGSize(width: radius, height: radius)
-        )
-        return Path(path.cgPath)
+    
+    
+    
+    struct RoundedCorner:Shape{
+        var radius: CGFloat = .infinity
+        var corners: UIRectCorner = .allCorners
+        func path(in rect: CGRect) -> Path {
+            let path = UIBezierPath(
+                roundedRect: rect,
+                byRoundingCorners: corners,
+                cornerRadii: CGSize(width: radius, height: radius)
+            )
+            return Path(path.cgPath)
+        }
+        
+        
     }
-    
-    
 }
+    
 #Preview {
     ContentView()
 }
