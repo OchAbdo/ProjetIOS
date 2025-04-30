@@ -15,14 +15,17 @@ struct Signup: View {
     @State var conpassword = ""
     @State private var isChecked = false
     var body: some View {
-        
+        NavigationView{
+            
         VStack {
+            NavigationLink(destination: Acceuil()) {
             HStack {
                 Image("backarrow")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 60, height: 40)
                     .padding(.top, 25)
+               
                 Image("logo")
                     .resizable()
                     .scaledToFit()
@@ -30,7 +33,7 @@ struct Signup: View {
                     .padding(.leading, -90)
             }
             .padding(.top, 50)
-            
+            }
             VStack(spacing: 20) {
                 Text("Sign Up")
                     .font(.largeTitle)
@@ -169,6 +172,7 @@ struct Signup: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(red: 58/255, green: 54/255, blue: 48/255))
         
+        }.navigationBarHidden(true)
     }
 }
 
