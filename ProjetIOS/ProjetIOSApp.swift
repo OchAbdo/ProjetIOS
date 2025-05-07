@@ -5,7 +5,7 @@
 //  Created by Tekup-mac-4 on 23/4/2025.
 //
 import SwiftUI
-import Firebase
+import FirebaseCore
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
