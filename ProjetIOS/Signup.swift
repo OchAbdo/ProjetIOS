@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct Signup: View {
     @State var fullname = ""
@@ -14,6 +15,23 @@ struct Signup: View {
     @State var password = ""
     @State var conpassword = ""
     @State private var isChecked = false
+    
+    func signIn(){
+        guard !email.isEmpty, !password.isEmpty else {
+            print("no email or passwort")
+            return
+        }
+        Task{
+            do {
+                let returnedUserData = try await AuthenticationManager.shared.createUser(email: email, password: password)
+                print("success")
+                print(returnedUserData)
+            } catch {
+                print("error: \(error)")
+            }
+        }
+    }
+    
     var body: some View {
         NavigationView{
             
@@ -132,6 +150,7 @@ struct Signup: View {
                 .padding()
                 
                 Button(action: {
+                    signIn()
                 }) {
                     Text("Log In")
                         .fontWeight(.bold)
