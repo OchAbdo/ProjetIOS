@@ -24,6 +24,13 @@ final class AuthenticationManager {
     static let shared = AuthenticationManager()
     private init() {}
     
+    func getAuthenticatedUser() throws -> AuthDataModel {
+        guard let user = Auth.auth().currentUser else {
+            throw URLError(.badServerResponse)
+        }
+        return AuthDataModel(user: user)
+    }
+    
     func createUser(email: String, password: String) async throws -> AuthDataModel{
         let authdata = try await Auth.auth().createUser(withEmail: email, password: password)
         return AuthDataModel(user: authdata.user)
