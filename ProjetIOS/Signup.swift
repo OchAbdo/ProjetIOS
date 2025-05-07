@@ -179,7 +179,7 @@ struct Signup: View {
                 .frame(width: 360, height: 650)
                 .background(Color(red: 112/255, green: 211/255, blue: 166/255))
                 .cornerRadius(20)
-                .padding(.top, -80)
+                .padding(.top, 80)
                 .padding(.bottom, 150)
                 .padding(.horizontal)
             }
