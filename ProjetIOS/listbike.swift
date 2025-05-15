@@ -7,10 +7,12 @@
 
 import Foundation
 
-class ListBike : Encodable ,Decodable
-{
-    var list : [ElectricBike] =  []
-    
+struct ListBike: Identifiable, Codable {
+    var id: String
+    var name: String
+    var type: String
+    var speed: String
+    var brand: String
 }
 
 

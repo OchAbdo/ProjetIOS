@@ -1,10 +1,3 @@
-//
-//  firebasebase.swift
-//  ProjetIOS
-//
-//  Created by Tekup-mac-7 on 14/5/2025.
-//
-
 import Foundation
 import FirebaseDatabase
 import Firebase
@@ -12,39 +5,36 @@ import Firebase
 class FirebaseService: ObservableObject {
     private var databaseRef: DatabaseReference
 
-    
+    @Published var listb: [ListBike] = []
+
     init() {
-            // Référence vers la base de données Firebase
-            self.databaseRef = Database.database().reference()
-            //self.readObject()
-            self.listobj()
-        }
+        self.databaseRef = Database.database().reference()
+        self.listobj()
+    }
 
-    
-    @Published
-    var listb : [ListBike] = []
-    
-    @Published
-    var obje : ElectricBike = ElectricBike()
-    
-    
+    func listobj() {
+        let bikesRef = databaseRef.child("bikes")
 
-    
-    
-    func listobj(){
-        databaseRef.observe(.value){
-            parentSnapshot in
-            guard let children = parentSnapshot.children.allObjects as?  [DataSnapshot] else {
-                return
+        bikesRef.observe(.value) { snapshot in
+            var bikes: [ListBike] = []
+
+            for child in snapshot.children {
+                if let childSnapshot = child as? DataSnapshot,
+                   let value = childSnapshot.value as? [String: Any],
+                   let id = value["id"] as? String,
+                   let name = value["name"] as? String,
+                   let type = value["type"] as? String,
+                   let speed = value["speed"] as? String,
+                   let brand = value["brand"] as? String{
+                    
+                    let bike = ListBike(id: id, name: name, type: type, speed: speed, brand: brand)
+                    bikes.append(bike)
+                }
             }
-            
-            self.listb = children.compactMap({ snapshot in
-                return try? snapshot.data(as: ListBike.self)
-            })
+
+            DispatchQueue.main.async {
+                self.listb = bikes
+            }
         }
     }
-    
-   
 }
-
-
