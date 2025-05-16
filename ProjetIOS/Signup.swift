@@ -159,9 +159,22 @@ struct Signup: View {
                     .padding(.top, 20)
                     
                     // Social Media Sign-up Options
-                    Text("------ Or Sign Up with ------")
-                        .foregroundColor(.white)
-                        .padding(.top, 10)
+                
+                        VStack {
+                            // Autres éléments de votre formulaire de création de compte
+
+                            // Texte cliquable pour rediriger vers la vue de connexion
+                            NavigationLink(destination: LogInView()) {
+                                Text("Already have an account?")
+                                    .font(.subheadline)
+                                    .foregroundColor(.blue)
+                                    .underline()
+                            }
+                            .padding(.top, 1)
+
+                            // Autres éléments de votre formulaire de création de compte
+                        }
+                        .navigationBarHidden(true)
                     
                     HStack {
                         Button(action: {}){

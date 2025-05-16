@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct BicycleDetails: View {
+    let bike: ListBike
     var body: some View {
         VStack(spacing: 30) {
             
@@ -16,43 +17,45 @@ struct BicycleDetails: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 180, height: 150)
-                        .padding(.leading)
+                        .padding()
 
-                    Spacer()
                     
-                    Image("notification")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .padding(.trailing, 10)
-
-                    Image("profile")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .padding(.trailing)
+               
                 }
-                .padding(.top, 20)
+                .padding()
             }
 
-            HStack(spacing: 20) {
-                VStack(alignment: .leading, spacing: 5) {
+            HStack(alignment: .top, spacing: 16) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Name")
+                        .foregroundColor(.white)
+                        .font(.system(size: 20, weight: .bold))
+
+                    Text(bike.name)
+                        .foregroundColor(Color(red: 112/255, green: 211/255, blue: 166/255))
+                        .font(.system(size: 20, weight: .bold))
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+                VStack(alignment: .leading, spacing: 8) {
                     Text("Top Speed")
                         .foregroundColor(.white)
                         .font(.system(size: 20, weight: .bold))
 
-                    Text("200 km/h")
+                    Text("\(bike.speed) km/h")
                         .foregroundColor(Color(red: 112/255, green: 211/255, blue: 166/255))
-                        .font(.system(size: 30, weight: .bold))
+                        .font(.system(size: 20, weight: .bold))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Warranty")
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Type")
                         .foregroundColor(.white)
                         .font(.system(size: 20, weight: .bold))
 
-                    Text("3 yrs")
+                    Text(bike.type)
                         .foregroundColor(Color(red: 112/255, green: 211/255, blue: 166/255))
-                        .font(.system(size: 30, weight: .bold))
+                        .font(.system(size: 20, weight: .bold))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -64,7 +67,7 @@ struct BicycleDetails: View {
             .padding(.horizontal)
 
             VStack(spacing: 20) {
-                Image("bikeImg")
+                Image("\(bike.img)")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 350, height: 350)
@@ -95,5 +98,12 @@ struct BicycleDetails: View {
 }
 
 #Preview {
-    BicycleDetails()
+    BicycleDetails(bike: ListBike(
+        id: "1",
+        name: "Mountain X200",
+        type: "Electric",
+        speed: "45",
+        brand: "X-Bike",
+        img: "aa"
+    ))
 }

@@ -9,6 +9,7 @@ struct LogInView: View {
     @State private var isSignedIn = false
     @State private var showAlert = false
     @State private var alertMessage = ""
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
     
     // Function to handle login
     func login() {
@@ -23,6 +24,7 @@ struct LogInView: View {
                 let authData = try await Auth.auth().signIn(withEmail: email, password: password)
                 if authData.user != nil {
                     isSignedIn = true
+                    isLoggedIn = true
                     print("Logged in successfully")
                 }
             } catch {
@@ -40,12 +42,19 @@ struct LogInView: View {
                     EmptyView()
                 }
                 
+            
                 HStack {
-                    Image("backarrow")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 60, height: 40)
-                        .padding(.top, 25)
+                    
+                    NavigationLink(destination: Acceuil()) {
+                        Image("backarrow")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 60, height: 40)
+                            .padding()
+                    }
+                    .padding(.top, 1)
+
+                   
                     
                     Image("logo")
                         .resizable()
