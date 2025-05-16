@@ -13,6 +13,7 @@ struct ListBike: Identifiable, Codable {
     var type: String
     var speed: String
     var brand: String
+    var img: String
 }
 
 

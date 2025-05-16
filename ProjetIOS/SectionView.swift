@@ -5,6 +5,7 @@ struct SectionView: View {
     var bikes: [ListBike]
 
     @State private var selectedBrand: String = "All"
+    @State private var selectedBike: ListBike? = nil
 
     var filteredBikes: [ListBike] {
         if selectedBrand == "All" {
@@ -59,32 +60,52 @@ struct SectionView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 20) {
                     ForEach(filteredBikes) { bike in
-                        VStack(alignment: .leading, spacing: 10) {
-                            Image("bike_placeholder") // Replace with image logic
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 100)
+                        Button(action: {
+                            selectedBike = bike
+                        }) {
+                            VStack(alignment: .leading, spacing: 10) {
+                                Image(" \(bike.img)")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 100)
 
-                            Text(bike.name)
-                                .font(.headline)
-                                .foregroundColor(.black)
+                                Text(bike.name)
+                                    .font(.headline)
+                                    .foregroundColor(.black)
 
-                            Text("Brand: \(bike.brand)")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
+                              /* Text("Brand: \(bike.brand)")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
 
-                            Text("Speed: \(bike.speed) km/h")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
+                                Text("Speed: \(bike.speed) km/h")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray) */
+                            }
+                            .padding()
+                            .frame(width: 160, height: 200)
+                            .background(Color.white)
+                            .cornerRadius(20)
+                            .shadow(radius: 3)
                         }
-                        .padding()
-                        .frame(width: 160, height: 200)
-                        .background(Color.white)
-                        .cornerRadius(20)
-                        .shadow(radius: 3)
                     }
                 }
                 .padding(.horizontal)
+            }
+
+            // 🚀 Navigation vers BicycleDetails
+            NavigationLink(
+                destination: Group {
+                    if let selectedBike = selectedBike {
+                        BicycleDetails(bike: selectedBike)
+                       // VeloDe(bike: selectedBike)
+                    }
+                },
+                isActive: Binding(
+                    get: { selectedBike != nil },
+                    set: { if !$0 { selectedBike = nil } }
+                )
+            ) {
+                EmptyView()
             }
         }
     }

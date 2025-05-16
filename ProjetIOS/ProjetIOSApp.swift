@@ -18,10 +18,19 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct ProjetIOSApp: App {
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            //ContentView()
+            
+            if isLoggedIn {
+                           NavigationStack {
+                               MainPage()
+                           }
+                       } else {
+                           SplashScreenView()
+                       }
         }
     }
 }
