@@ -64,7 +64,7 @@ struct SectionView: View {
                             selectedBike = bike
                         }) {
                             VStack(alignment: .leading, spacing: 10) {
-                                Image(" \(bike.img)")
+                                Image(bike.img)
                                     .resizable()
                                     .scaledToFit()
                                     .frame(height: 100)
